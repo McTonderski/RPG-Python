@@ -21,10 +21,10 @@ def show_map(map_list):
 
 def jump(player):
     for item in player.equipment:
-        if item.name in "Parachute".lower():
+        if item.name not in "parachute".lower():
             return False
-
     return True
+
 
 def level_3():
     pass
@@ -35,21 +35,29 @@ def level_2(player):
     player.respawn = 2
     player.level = 2
     for item in player.equipment:
-        if item.name == "Parachute":
+        if item.name == "parachute":
             player.equipment.remove(item)
     print("You see a long road ahead! And few men in front take 'em one by one")
-    print("Pick your weapon!")
+    print("Pick your weapon! (if you have any)")
 
     Enemies = [Enemy(1), Enemy(1), Enemy(2), Enemy(2), Enemy(3), Enemy(3)]
     for enemy in Enemies:
-        item_list = []
-        for key, item in enumerate(player.equipment):
-            print(item.name)
-            item_list.append(str(key))
+        if len(player.equipment) !=0:
+            item_list = []
+            for key, item in enumerate(player.equipment):
+                print(item.name)
+                item_list.append(str(key))
+        else:
+            print("You don't have any items! ")
+            item_list = []
         while True:
-            ans = input("> ")
-            if ans in item_list:
-                weapon_damage = player.equipment[int(ans)].damage
+            if len(player.equipment) != 0:
+                ans = input("> ")
+                if ans in item_list:
+                    if len(player.equipment) != 0:
+                        weapon_damage = player.equipment[int(ans)].damage
+                    else:
+                        weapon_damage = 0
                 print("To fight press f[Enter] ASAP\n\n")
                 while enemy.hp > 0:
                     fight = input("> ")
@@ -101,7 +109,7 @@ def level_1(player):
         items_sleep[1].damage = 0
         items_sleep[0].durability = 0
         items_sleep[1].durability = 0
-    while t() - time < 1:
+    while t() - time < 30:
         answ = input("Your decision: ")
         if answ.lower() in ["map", "info", "save"]:
             if answ.lower() == "map":
@@ -308,7 +316,9 @@ def level_1(player):
                         print("man run next to you and umped out of the falling airplane.")
                         break
             if ans == ans_list[1]:
-                if not jump(player):
+                for item in player.equipment:
+                    print(item.name)
+                if jump(player) == True:
                     level_2(player)
                 else:
                     print("You don't have a parachute. You died where you 'landed'.")
