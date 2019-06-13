@@ -27,7 +27,7 @@ def jump(player):
     return True
 
 def level_3():
-
+    pass
 
 
 def level_2(player):
@@ -92,7 +92,7 @@ def level_1(player):
         items_cabin = [Equipment("Passport"), Equipment("Photos"), Equipment("Nail")]
         items_cockpit = [Equipment("Knife"), Equipment("Multi tool")]
         items_toilet = [Equipment("Paper")]
-        items_sleep = [Equipment("Parachute"), Equipment("Phone")]
+        items_sleep = [Equipment("parachute"), Equipment("Phone")]
         items_cabin[0].damage = 0
         items_cabin[1].damage = 0
         items_cabin[0].durability = 1
@@ -144,6 +144,7 @@ def level_1(player):
                         for item in items_ramp:
                             if dec in item.name.lower():
                                 player.equipment.append(item)
+                                print("You added", item.name, " to your equipment")
                                 items_ramp.remove(item)
 
         elif player.current_position == "Main Cabin":
@@ -179,6 +180,7 @@ def level_1(player):
                         for item in items_cabin:
                             if dec.lower() in item.name.lower():
                                 player.equipment.append(item)
+                                print("You added", item.name, " to your equipment")
                                 items_cabin.remove(item)
 
         elif player.current_position == "Cockpit":
@@ -211,6 +213,7 @@ def level_1(player):
                         for item in items_cockpit:
                             if dec in item.name.lower():
                                 player.equipment.append(item)
+                                print("You added", item.name, " to your equipment")
                                 items_cockpit.remove(item)
 
         elif player.current_position == "Toilet":
@@ -243,6 +246,7 @@ def level_1(player):
                         for item in items_toilet:
                             if dec in item.name.lower():
                                 player.equipment.append(item)
+                                print("You added", item.name, " to your equipment")
                                 items_toilet.remove(item)
 
         elif player.current_position == "Sleeping room":
@@ -273,6 +277,7 @@ def level_1(player):
                         for item in items_sleep:
                             if dec in item.name.lower():
                                 player.equipment.append(item)
+                                print("You added", item.name, " to your equipment")
                                 items_sleep.remove(item)
 
         elif len(player.equipment) == 11:

@@ -10,7 +10,7 @@ class Hero:
         self.spells = []
         self.level = 1
         self.hp = 100 * self.level
-        self.equipment = []
+        self.equipment = [Equipment("parachute")]
         self.respawn = None
         self.current_position = None
 
